@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            /* background-color: black; */
+            /* background-color: rgb(55, 66, 107); */
+            margin-top: 50px;
+
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            font-weight: bold;
+            height: 1500px;
+        }
+
+        /* .back {
+            color: #FFF;
+            transform: rotate(90deg);
+            font-size: 120px;
+            position: fixed;
+            text-shadow: 3px 3px 2px #f00, 5px 5px 2px #00f;
+
+        } */
+
+        .loop {
+            display: flex;
+            overflow: hidden;
+            transform: rotate(90deg);
+            position: fixed;
+            /* margin: 0; */
+            margin-right: 50px;
+        }
+
+        .loop p {
+            padding-right: .5em;
+            font-size: 8vw;
+            white-space: nowrap;
+        }
+
+        .text03 {
+            animation: loop 50s -25s linear infinite;
+        }
+
+        .text04 {
+            animation: loop2 50s linear infinite;
+        }
+
+        @keyframes loop {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        @keyframes loop2 {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-200%);
+            }
+        }
+
+        .inner {
+            margin-right: auto;
+            margin-left: auto;
+            max-width: 800px;
+        }
+
+        img {
+            vertical-align: bottom;
+            height: auto;
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            color: #FFF;
+            font-size: 80px;
+            animation: glitch 0.8s calc(0.03s * var(--index)) infinite;
+            text-shadow: -2px -2px 0 rgb(37, 104, 185), 2px 1px 0 rgb(233, 227, 49);
+        }
+
+
+
+        /* .h1:hover {
+            animation: glitch 0.8s calc(0.03s * var(--index)) infinite;
+            text-shadow: -1px -1px 0 deeppink, 1px 1px 0 cyan;
+        } */
+
+        @keyframes glitch {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+                text-shadow: -1px -1px 0 deeppink, 1px 1px 0 cyan;
+            }
+
+            10% {
+                transform: translate(-1px, 1px) rotate(-1deg);
+            }
+
+            20% {
+                transform: translate(1px, -1px) rotate(1deg);
+                text-shadow: 1px 2px 0 deeppink, 1px 1px 0 cyan;
+            }
+
+            30% {
+                transform: translate(-1px, 1px) rotate(0deg);
+                text-shadow: -1px -1px 0 deeppink, 1px 1px 0 cyan;
+            }
+
+            40% {
+                transform: translate(1px, -1px) rotate(-1deg);
+            }
+
+            50% {
+                transform: translate(-1px, 1px) rotate(1deg);
+                text-shadow: 1px 1px 0 deeppink, 1px 1px 0 cyan;
+            }
+
+            60% {
+                transform: translate(1px, -1px) rotate(0deg);
+            }
+
+            70% {
+                transform: translate(-1px, 1px) rotate(-1deg);
+                text-shadow: -1px -1px 0 deeppink, 1px 1px 0 cyan;
+            }
+
+            80% {
+                transform: translate(1px, -1px) rotate(1deg);
+                text-shadow: 1px 1px 0 deeppink, 1px 2px 0 cyan;
+            }
+
+            90% {
+                transform: translate(-1px, 1px) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(0.5px, -0.5px) rotate(-0.5deg);
+                text-shadow: -1px -1px 0 deeppink, 1px 1px 0 cyan;
+            }
+        }
+
+        ;
+
+        h1 span {
+            /* color: #F00; */
+            font-weight: bold;
+        }
+
+        #player {
+            border: #FFF solid 3px;
+            margin-top: auto;
+            margin-bottom: auto;
+            width: 100%;
+        }
+
+        ul {
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            list-style: none;
+            margin: 10px;
+        }
+
+        .btn {
+            font-size: 14px;
+            background-color: rgb(248, 248, 6);
+            text-align: center;
+            width: 100px;
+            padding: 8px;
+            border-radius: 50px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background-color: rgb(255, 157, 0);
+            color: #FFF;
+            transition: .3s;
+            border-radius: 0px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 1. The <iframe> (and video player) will replace this <div> tag. -->
+    <!-- 1. ここの<div>タグがYoutubeの<iframe>に置き換わる。 -->
+
+    <!-- <p class="back">YouTube</p> -->
+    <div class="loop">
+        <p class="text03">YOUTUBE</p>
+        <p class="text04">YOUTUBE</p>
+    </div>
+
+    <div class="inner">
+        <!-- <h1>You<span>Tube</span></h1> -->
+        <div id="player"></div>
+        <form>
+            <input type="search" id="ytSearch" value="TRiDENT" />
+            <button id="searchBtn">検索</button>
+        </form>
+        <select class="searchlist"></select>
+        <nav>
+            <ul>
+                <li class="btn" id="mute">ミュート</li>
+            </ul>
+            <ul>
+                <label>ボリューム<input type="range" min="0" max="100" name="volume" id="volume" value="50" />
+                    <span id="volumeNum"></span>
+                </label>
+                <li>
+                    <form id="doSpeed">
+                        <input type="radio" id="mslow" name="speed" value="0.25" />
+                        <label for="mslow">0.25</label>
+                        <input type="radio" id="slow" name="speed" value="0.5" />
+                        <label for="slow">0.5</label>
+                        <input type="radio" id="normal" name="speed" value="1.0" checked />
+                        <label for="normal">1</label>
+                        <input type="radio" id="hspeed" name="speed" value="1.5" />
+                        <label for="hspeed">1.5</label>
+                        <input type="radio" id="mhspeed" name="speed" value="2" />
+                        <label for="mhspeed">2</label>
+                    </form>
+                </li>
+            </ul>
+            <ul>
+                <li class="btn" id="doplay">再生</li>
+                <li class="btn" id="dostop">停止</li>
+                <li class="btn" id="dopause">一時停止</li>
+            </ul>
+            <ul>
+                <li class="btn" id="do10sPrev">＜＜10秒戻る</li>
+                <li class="btn" id="do10sNext">10秒先へ＞＞</li>
+            </ul>
+            <li>
+                <select id="MovieId" class="ytMovie" name="ytMovie">
+                    <option selected>選択してください。</option>
+                    <option value="bjN-3EyXNyE">TRiDENT『Alive』MV</option>
+                    <option value="We__CnrYa9U">TRiDENT『DISTINATION』</option>
+                    <option value="I6ld4ecEp7s">TRiDENT『IMAGINATION』MV</option>
+                    <option value="azQVVhMUz58">TRiDENT『Continue』MV【exガールズロックバンド革命】</option>
+                </select>
+            </li>
+        </nav>
+    </div>
+
+
+    <script>
+        // 2. This code loads the IFrame Player API code asynchronously.
+        // 2. 変数tagにscriptタグを作って入れる。Element=要素、Attrubute=属性
+        var tag = document.createElement('script');
+
+        tag.src = 'https://www.youtube.com/iframe_api';
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        // 3. This function creates an <iframe> (and YouTube player)
+        //    after the API code downloads.
+        // 3. APIのコードを読み込んでから、この関数を<iframe>内に影響させる。
+        let youtubeId = 'UP1zTP5qcfw';
+        //TRIDENT × GOMESS「普通なんかじゃいられない。」
+        function onYouTubeIframeAPIReady() {
+            //最初のplayerは、変数。後ろのplayerは、<div>のid
+
+            //最初のplayerは、変数。後ろのplayerは、<div>のid
+            player = new YT.Player('player', {
+                height: '360',
+                width: '640',
+                videoId: youtubeId, //②videoIdをyoutubeIdに変更
+                playerVars: {
+                    //③パラメータの設定
+                    playsinline: 1,
+                    controls: 0
+                },
+                events: {
+                    onReady: onPlayerReady
+                    //onStateChange: onPlayerStateChange,
+                }
+            });
+        }
+
+
+        // 4. The API will call this function when the video player is ready.
+        // 4. このAPIは、video playderが準備でしたら、この関数を呼び出します。
+        function onPlayerReady(event) {
+            event.target.playVideo(); //①最初の再生を止める
+            let currentVol = 5; //②最初のボリュームを設定（0〜100）
+            event.target.setVolume(currentVol); //③Playerのボリュームに設定
+            document.querySelector('#volume').value = currentVol; //④rangeFormに音量を設定
+            document.querySelector('#volumeNum').textContent = currentVol; //⑤テキストにも音量を数値で表示
+        }
+
+        // 5. The API calls this function when the player's state changes.
+        //    The function indicates that when playing a video (state=1),
+        //    the player should play for six seconds and then stop.
+        /* 5. video playerのステート（状態）が変更されたら、この関数を呼び出す。
+      動画を再生するときの設定は、state=1にしておきます。
+      プレイヤーは、6000ミリ秒後に終了します。 */
+        var done = false;
+        function onPlayerStateChange(event) {
+            if (event.data == YT.PlayerState.PLAYING && !done) {
+                setTimeout(stopVideo, 6000);
+                done = true;
+            }
+        }
+        //停止関数
+        function stopVideo() {
+            player.stopVideo();
+        }
+        //再生関数
+        function playTheVideo() {
+            player.playVideo();
+        }
+
+        //再生イベント
+        let doplayBtn = document.querySelector('#doplay');
+        doplayBtn.addEventListener('click', function () {
+            playTheVideo(); //関数名に変更
+        });
+
+        //停止イベント
+        let dostopBtn = document.querySelector('#dostop');
+        dostopBtn.addEventListener('click', function () {
+            stopVideo();
+        });
+
+        //一時停止関数
+        function pauseTheVideo() {
+            player.pauseVideo();
+        }
+
+        //一時停止イベント
+        let dopauseBtn = document.querySelector('#dopause');
+        dopauseBtn.addEventListener('click', function () {
+            pauseTheVideo();
+        });
+
+        //ミュート関数
+        function onMute() {
+            //ミュートの時、trueを返すのでミュートを解除します。
+            if (player.isMuted()) {
+                player.unMute();
+            } else {
+                //ミュートが解除されている時はfalseなので、ミュートにします。
+                player.mute();
+            }
+        }
+
+        // //ミュートイベント
+        // let onMuteBtn = document.querySelector('#mute');
+        // onMuteBtn.addEventListener('click', function () {
+        //     onMute();
+        // });
+
+        // // //ミュートイベント
+        // let onMuteBtn = document.querySelector('#mute');
+        // onMuteBtn.addEventListener('click', function () {
+        //     onMute();
+        //     if (onMuteBtn.innerText === 'ミュート') {
+        //         onMuteBtn.innerText = 'ミュート解除';
+        //     } else {
+        //         onMuteBtn.innerText = 'ミュート';
+        //     }
+        // });
+        //10秒前にの関数
+        function onePrev() {
+            let currentTime = player.getCurrentTime();
+            player.seekTo(currentTime - 10);
+        }
+
+        //10秒後にの関数
+        function oneNext() {
+            let currentTime = player.getCurrentTime();
+            player.seekTo(currentTime + 10);
+        }
+
+        //10秒前へイベント
+        let onePrevBtn = document.querySelector('#do10sPrev');
+        onePrevBtn.addEventListener('click', function () {
+            onePrev();
+        });
+
+        //10秒後へイベント
+        let oneNextBtn = document.querySelector('#do10sNext');
+        oneNextBtn.addEventListener('click', function () {
+            oneNext();
+        });
+
+        //ボリューム関数
+        function volumeFn(vol) {
+            let currentVol = player.getVolume();
+            player.setVolume(vol);
+        }
+
+        //ボリュームイベント
+        let volumeBtn = document.querySelector('#volume');
+        let volumeTxt = document.querySelector('#volumeNum');
+        volumeBtn.addEventListener('change', function () {
+            volumeFn(this.value);
+            volumeTxt.textContent = this.value;
+        });
+
+        //動画切り替えイベント
+        let movieid = document.querySelector('#MovieId');
+        movieid.addEventListener('change', function () {
+            youtubeId = movieid.value;
+            //プレイヤー削除
+            player.destroy();
+            onYouTubeIframeAPIReady();
+        });
+
+        //再生スピード関数
+        function playSpeed(num) {
+            //setPlaybackRateが再生スピードをセットするメソッド
+            console.log(num);
+            player.setPlaybackRate(num);
+            player.playVideo();
+        }
+
+        //再生スピードイベント
+        let speedBtn = document.querySelector('#doSpeed');
+        speedBtn.addEventListener('change', function () {
+            //数値でないと効かないので、文字列から数値に変換
+            playSpeed(parseFloat(speedBtn.speed.value));
+        });
+
+
+        // クリックイベントとAjax取得を組み合わせる
+        const selectvideo = document.querySelector(".searchlist");
+        //検索関数の定義
+        function ytSearch(val) {
+            const key = 'AIzaSyDMegUAqoQJNYLj7hOPfwCC2WfusgK3WoA'; //自分のキーに書き換えます。
+            const num = 10;
+            const part = 'snippet';
+            const type = 'video';
+            const query = val;
+            fetch(
+                `https://www.googleapis.com/youtube/v3/search?type=${type}&part=${part}&maxResults=${num}&key=${key}&q=${query}&playsinline=1`
+            )
+                .then((data) => data.json())
+                .then((obj) => {
+                    for (let movie of obj["items"]) {
+                        //各videoIdとタイトルを取得して変数に代入
+                        const ytId = movie["id"]["videoId"];
+                        const ytTitle = movie["snippet"]["title"];
+                        //optionを作成して、videoIdとtitleを所定の場所に設置し、要素を追加していく。
+                        const optionTag = document.createElement('option');
+                        optionTag.textContent = ytTitle;
+                        optionTag.setAttribute('value', ytId);
+                        selectvideo.appendChild(optionTag);
+                    }
+                });
+        }
+
+        // // 検索フォームの文字列を取得
+        const ytSearchBtn = document.querySelector('#searchBtn');
+        ytSearchBtn.addEventListener('click', function (e) {
+            const ytSearchVal = document.querySelector('#ytSearch').value;
+            console.log(ytSearchVal); //検索フォームの値を取得
+            ytSearch(ytSearchVal); //関数の実行
+            e.preventDefault(); //検索ボタンの送信をストップしておく。
+        });
+
+    </script>
+</body>
+
+</html>
