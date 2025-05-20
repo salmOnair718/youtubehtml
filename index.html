@@ -112,6 +112,11 @@
             text-shadow: -2px -2px 0 rgb(37, 104, 185), 2px 1px 0 rgb(233, 227, 49); */
         }
 
+        .flex {
+            display: flex;
+            justify-content: space-between;
+        }
+
         #player {
             border: #FFF solid 3px;
             margin-top: auto;
@@ -179,17 +184,21 @@
 
     <div class="inner">
         <h1>YouTube</h1>
-        <form>
-            <label for="ytSearch">検索ワード</label>
-            <input type="search" id="ytSearch" value="TRIDENT" />
-            <button id="searchBtn" type="button">検索</button>
-        </form>
-        <!-- <select class="searchlist"></select> -->
-        <label for="searchlist">カテゴリを選択</label>
-        <select id="searchlist" class="searchlist" name="searchlist">
-            <option value="1">映画</option>
-            <option value="2">音楽</option>
-        </select>
+        <div class="flex">
+            <form>
+                <label for="ytSearch">search WORD</label>
+                <input type="search" id="ytSearch" value="TRIDENT" />
+                <button id="searchBtn" type="button">検索</button>
+            </form>
+            <!-- <select class="searchlist"></select> -->
+            <div>
+                <label for="searchlist">choose CATEGORY</label>
+                <select id="searchlist" class="searchlist" name="searchlist">
+                    <option value="1">映画</option>
+                    <option value="2">音楽</option>
+                </select>
+            </div>
+        </div>
 
         <div id="player"></div>
 
