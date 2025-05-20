@@ -1,70 +1,93 @@
 <!DOCTYPE html>
 <html lang="ja">
 
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTubeAPI</title>
+
     <style>
         body {
             /* background-color: black; */
             /* background-color: rgb(55, 66, 107); */
-            margin-top: 50px;
+            /* margin-top: 50px; */
 
+            margin: 0;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             font-weight: bold;
-            height: 1500px;
+            height: 1000px;
         }
 
-        /* .back {
-            color: #FFF;
-            transform: rotate(90deg);
-            font-size: 120px;
-            position: fixed;
-            text-shadow: 3px 3px 2px #f00, 5px 5px 2px #00f;
 
-        } */
-
-        .loop {
-            display: flex;
-            overflow: hidden;
-            transform: rotate(90deg);
-            position: fixed;
-            /* margin: 0; */
-            margin-right: 50px;
-        }
-
-        .loop p {
-            padding-right: .5em;
-            font-size: 8vw;
+        .flame__text {
+            height: 100%;
+            display: block;
+            text-align: center;
+            /* font-size: 12px; */
+            writing-mode: vertical-lr;
             white-space: nowrap;
+            font-size: 40px;
+            line-height: 1.0;
+            /* overflow: hidden; */
+            margin: 10px;
         }
 
-        .text03 {
+        .flame__right {
+            width: 50px;
+            height: 100%;
+            position: fixed;
+            z-index: 1000;
+            text-align: center;
+            right: 0px;
+            border-left: .75px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flame__left {
+            width: 50px;
+            height: 100%;
+            position: fixed;
+            z-index: 1000;
+            text-align: center;
+            left: 0px;
+            border-right: .75px solid #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .flame__text:nth-child(odd) {
             animation: loop 50s -25s linear infinite;
         }
 
-        .text04 {
+        .flame__text:nth-child(even) {
             animation: loop2 50s linear infinite;
         }
 
         @keyframes loop {
             0% {
-                transform: translateX(100%);
+                transform: translateY(100%);
             }
 
-            100% {
-                transform: translateX(-100%);
+            to {
+                transform: translateY(-100%);
             }
         }
 
         @keyframes loop2 {
             0% {
-                transform: translateX(0);
+                transform: translateY(0);
             }
 
-            100% {
-                transform: translateX(-200%);
+            to {
+                transform: translateY(-200%);
             }
         }
+
 
         .inner {
             margin-right: auto;
@@ -80,77 +103,13 @@
 
         h1 {
             text-align: center;
-            color: #FFF;
-            font-size: 80px;
-            animation: glitch 0.8s calc(0.03s * var(--index)) infinite;
-            text-shadow: -2px -2px 0 rgb(37, 104, 185), 2px 1px 0 rgb(233, 227, 49);
-        }
-
-
-
-        /* .h1:hover {
-            animation: glitch 0.8s calc(0.03s * var(--index)) infinite;
-            text-shadow: -1px -1px 0 deeppink, 1px 1px 0 cyan;
-        } */
-
-        @keyframes glitch {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-                text-shadow: -1px -1px 0 deeppink, 1px 1px 0 cyan;
-            }
-
-            10% {
-                transform: translate(-1px, 1px) rotate(-1deg);
-            }
-
-            20% {
-                transform: translate(1px, -1px) rotate(1deg);
-                text-shadow: 1px 2px 0 deeppink, 1px 1px 0 cyan;
-            }
-
-            30% {
-                transform: translate(-1px, 1px) rotate(0deg);
-                text-shadow: -1px -1px 0 deeppink, 1px 1px 0 cyan;
-            }
-
-            40% {
-                transform: translate(1px, -1px) rotate(-1deg);
-            }
-
-            50% {
-                transform: translate(-1px, 1px) rotate(1deg);
-                text-shadow: 1px 1px 0 deeppink, 1px 1px 0 cyan;
-            }
-
-            60% {
-                transform: translate(1px, -1px) rotate(0deg);
-            }
-
-            70% {
-                transform: translate(-1px, 1px) rotate(-1deg);
-                text-shadow: -1px -1px 0 deeppink, 1px 1px 0 cyan;
-            }
-
-            80% {
-                transform: translate(1px, -1px) rotate(1deg);
-                text-shadow: 1px 1px 0 deeppink, 1px 2px 0 cyan;
-            }
-
-            90% {
-                transform: translate(-1px, 1px) rotate(0deg);
-            }
-
-            100% {
-                transform: translate(0.5px, -0.5px) rotate(-0.5deg);
-                text-shadow: -1px -1px 0 deeppink, 1px 1px 0 cyan;
-            }
-        }
-
-        ;
-
-        h1 span {
-            /* color: #F00; */
-            font-weight: bold;
+            /* color: #FFF; */
+            font-size: 50px;
+            margin: 0;
+            padding-top: 30px;
+            padding-bottom: 20px
+                /* animation: glitch 0.8s calc(0.03s * var(--index)) infinite;
+            text-shadow: -2px -2px 0 rgb(37, 104, 185), 2px 1px 0 rgb(233, 227, 49); */
         }
 
         #player {
@@ -197,27 +156,60 @@
     <!-- 1. ここの<div>タグがYoutubeの<iframe>に置き換わる。 -->
 
     <!-- <p class="back">YouTube</p> -->
-    <div class="loop">
+    <!-- <div class="loop">
         <p class="text03">YOUTUBE</p>
         <p class="text04">YOUTUBE</p>
+    </div> -->
+    <!-- <div id="youtube-text" class="rotate-text">YouTube</div> -->
+
+    <div class="flame">
+        <div class="flame__right">
+            <p class="flame__text">
+                ◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎
+            </p>
+
+        </div>
+
+        <div class="flame__left">
+            <p class="flame__text">
+                ◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎◻︎
+            </p>
+        </div>
     </div>
 
     <div class="inner">
-        <!-- <h1>You<span>Tube</span></h1> -->
+        <h1>YouTube</h1>
         <div id="player"></div>
-        <form>
+
+        <!-- <form>
             <input type="search" id="ytSearch" value="TRiDENT" />
             <button id="searchBtn">検索</button>
+        </form> -->
+
+        <form>
+            <label for="ytSearch">検索ワード</label>
+            <input type="search" id="ytSearch" value="TRiDENT" />
+            <button id="searchBtn" type="button">検索</button>
         </form>
-        <select class="searchlist"></select>
+
+        <!-- <select class="searchlist"></select> -->
+        <label for="searchlist">カテゴリを選択</label>
+        <select id="searchlist" class="searchlist" name="searchlist">
+            <option value="1">映画</option>
+            <option value="2">音楽</option>
+        </select>
+
+
         <nav>
             <ul>
                 <li class="btn" id="mute">ミュート</li>
             </ul>
             <ul>
-                <label>ボリューム<input type="range" min="0" max="100" name="volume" id="volume" value="50" />
-                    <span id="volumeNum"></span>
-                </label>
+                <li>
+                    <label>ボリューム<input type="range" min="0" max="100" name="volume" id="volume" value="50" />
+                        <span id="volumeNum"></span>
+                    </label>
+                </li>
                 <li>
                     <form id="doSpeed">
                         <input type="radio" id="mslow" name="speed" value="0.25" />
@@ -242,20 +234,42 @@
                 <li class="btn" id="do10sPrev">＜＜10秒戻る</li>
                 <li class="btn" id="do10sNext">10秒先へ＞＞</li>
             </ul>
-            <li>
-                <select id="MovieId" class="ytMovie" name="ytMovie">
-                    <option selected>選択してください。</option>
-                    <option value="bjN-3EyXNyE">TRiDENT『Alive』MV</option>
-                    <option value="We__CnrYa9U">TRiDENT『DISTINATION』</option>
-                    <option value="I6ld4ecEp7s">TRiDENT『IMAGINATION』MV</option>
-                    <option value="azQVVhMUz58">TRiDENT『Continue』MV【exガールズロックバンド革命】</option>
-                </select>
-            </li>
+            <ul>
+                <li>
+                    <!-- <select id="MovieId" class="ytMovie" name="ytMovie">
+                        <option selected>選択してください。</option>
+                        <option value="bjN-3EyXNyE">TRiDENT『Alive』MV</option>
+                        <option value="We__CnrYa9U">TRiDENT『DISTINATION』</option>
+                        <option value="I6ld4ecEp7s">TRiDENT『IMAGINATION』MV</option>
+                        <option value="azQVVhMUz58">TRiDENT『Continue』MV【exガールズロックバンド革命】</option>
+                    </select> -->
+                    <label for="MovieId">映画を選択してください</label>
+                </li>
+                <li> <select id="MovieId" class="ytMovie" name="ytMovie">
+                        <option value="1">映画A</option>
+                        <option value="2">映画B</option>
+                    </select>
+                </li>
+            </ul>
+
         </nav>
     </div>
 
 
     <script>
+        // 倍速ボタンを押したときに呼ばれる関数
+        function changeSpeed(rate) {
+            const rotatingText = document.getElementById("youtube-text");
+
+            // アニメーションのdurationを変更（速くするにはdurationを短く）
+            // 例: 1倍速 → 5秒, 2倍速 → 2.5秒, 4倍速 → 1.25秒
+            const baseDuration = 5; // 通常の回転速度（秒）
+            const newDuration = baseDuration / rate;
+
+            rotatingText.style.animationDuration = `${newDuration}s`;
+        }
+
+
         // 2. This code loads the IFrame Player API code asynchronously.
         // 2. 変数tagにscriptタグを作って入れる。Element=要素、Attrubute=属性
         var tag = document.createElement('script');
