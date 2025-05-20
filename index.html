@@ -16,7 +16,7 @@
             margin: 0;
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             font-weight: bold;
-            height: 1000px;
+            height: 100vh;
         }
 
 
@@ -179,6 +179,11 @@
 
     <div class="inner">
         <h1>YouTube</h1>
+        <form>
+            <label for="ytSearch">検索ワード</label>
+            <input type="search" id="ytSearch" value="TRiDENT" />
+            <button id="searchBtn" type="button">検索</button>
+        </form>
         <div id="player"></div>
 
         <!-- <form>
@@ -186,11 +191,7 @@
             <button id="searchBtn">検索</button>
         </form> -->
 
-        <form>
-            <label for="ytSearch">検索ワード</label>
-            <input type="search" id="ytSearch" value="TRiDENT" />
-            <button id="searchBtn" type="button">検索</button>
-        </form>
+
 
         <!-- <select class="searchlist"></select> -->
         <label for="searchlist">カテゴリを選択</label>
