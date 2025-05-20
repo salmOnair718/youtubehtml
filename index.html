@@ -301,8 +301,6 @@
         //TRIDENT × GOMESS「普通なんかじゃいられない。」
         function onYouTubeIframeAPIReady() {
             //最初のplayerは、変数。後ろのplayerは、<div>のid
-
-            //最初のplayerは、変数。後ろのplayerは、<div>のid
             player = new YT.Player('player', {
                 height: '360',
                 width: '640',
@@ -313,8 +311,8 @@
                     controls: 0
                 },
                 events: {
-                    onReady: onPlayerReady
-                    //onStateChange: onPlayerStateChange,
+                    // onReady: onPlayerReady
+                    onStateChange: onPlayerStateChange,
                 }
             });
         }
